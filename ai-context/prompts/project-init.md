@@ -12,7 +12,8 @@ Generate the entire project structure and configuration yourself; do not ask the
 - **Dependencies**
   - Install React, React Router v6.4+, React Hook Form, Zod, Tailwind CSS, and their peer dependencies.
   - Add TipTap packages and any tooling needed to invoke the shadcn/ui CLI (it runs via `npx` from GitHub; do not add `@shadcn/ui` to `dependencies` or `devDependencies`).
-  - Install ESLint, necessary TypeScript ESLint plugins/configs, and optionally Prettier with the suggested configuration `{ "printWidth": 120, "semi": false, "singleQuote": true }`.
+  - Install ESLint (pin to `^8.56.0`) with compatible `@typescript-eslint/eslint-plugin` and `@typescript-eslint/parser` versions (for example `^6.21.0`), and optionally Prettier with the suggested configuration `{ "printWidth": 120, "semi": false, "singleQuote": true }`.
+  - When selecting additional linting/formatting tooling, prefer the latest releases that remain compatible with the pinned ESLint major version; avoid auto-upgrading to ESLint 9 until the stack guidance is updated.
 - **Configuration**
   - Configure `tsconfig.json` for strict TypeScript usage.
   - Set up ESLint for a modern React + TypeScript project with rules aligned to the provided stack.
@@ -23,6 +24,7 @@ Generate the entire project structure and configuration yourself; do not ask the
 - **Documentation**
   - Generate a README section that documents how to install dependencies, run the project, execute linting/formatting commands, and note that features are pending implementation.
   - Set expectations for semantic commit messages following Conventional Commits.
+  - Document the reason for the ESLint version pin so future upgrades account for compatibility.
 - **Constraints**
   - Do not fetch data, build forms, or add routing behaviors beyond routing placeholders.
   - Do not create UI components beyond minimal placeholders required by the configuration tooling.

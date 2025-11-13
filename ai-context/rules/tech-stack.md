@@ -21,6 +21,7 @@
 
 ## Tooling and Best Practices
 - ESLint with a modern React/TypeScript setup
+- Pin ESLint to `^8.56.0` and align `@typescript-eslint/*` packages accordingly until the stack guidance is revised for ESLint 9 compatibility
 - Semantic commit messages following Conventional Commits
 - Optional JSDoc for reusable helpers or custom hooks
 - Accessibility considerations: labels, keyboard navigation, ARIA roles where appropriate
