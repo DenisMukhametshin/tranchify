@@ -10,16 +10,16 @@ Generate the entire project structure and configuration yourself; do not ask the
   - Prepare folders for `components`, `hooks`, `helpers`, and `types` without adding feature code.
   - Include placeholder files or TODO comments where appropriate, but do not implement user stories.
 - **Dependencies**
-  - Install React, React Router v6.4+, React Hook Form, Zod, shadcn/ui, Tailwind CSS, and their peer dependencies.
-  - Add TipTap packages and any required shadcn/ui generator tooling.
+  - Install React, React Router v6.4+, React Hook Form, Zod, Tailwind CSS, and their peer dependencies.
+  - Add TipTap packages and any tooling needed to invoke the shadcn/ui CLI (it runs via `npx` from GitHub; do not add `@shadcn/ui` to `dependencies` or `devDependencies`).
   - Install ESLint, necessary TypeScript ESLint plugins/configs, and optionally Prettier with the suggested configuration `{ "printWidth": 120, "semi": false, "singleQuote": true }`.
 - **Configuration**
   - Configure `tsconfig.json` for strict TypeScript usage.
   - Set up ESLint for a modern React + TypeScript project with rules aligned to the provided stack.
   - If Prettier is added, supply the recommended settings and ensure compatibility with ESLint.
-  - Configure Tailwind CSS (including `tailwind.config` and `postcss.config`) and integrate with shadcn/ui.
-  - Prepare `package.json` scripts for development, build, linting, formatting, and type-checking.
-  - Initialize shadcn/ui with Tailwind, generating the base config but no actual components yet.
+  - Configure Tailwind CSS (including `tailwind.config` and `postcss.config`) and integrate with shadcn/ui by generating its `components.json` and required Tailwind presets.
+  - Prepare `package.json` scripts for development, build, linting, formatting, type-checking, and (optionally) a helper script that runs the shadcn/ui generator command.
+  - Initialize shadcn/ui with Tailwind via the CLI, generating the base config but no actual components yet.
 - **Documentation**
   - Generate a README section that documents how to install dependencies, run the project, execute linting/formatting commands, and note that features are pending implementation.
   - Set expectations for semantic commit messages following Conventional Commits.

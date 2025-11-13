@@ -36,7 +36,7 @@
   - Use React Router v6.4+ with `createBrowserRouter`.
   - Supply a clear 404 or fallback route and maintain readable route definitions.
 - **UI**
-  - Prefer shadcn/ui for accessible, consistent components (bonus).
+  - Use the shadcn/ui CLI to scaffold accessible, consistent components into the codebase (bonus). Do not add `@shadcn/ui` to `package.json`.
 - **Styling**
   - Tailwind CSS is advised (bonus). Alternatives such as CSS Modules, styled-components, or other CSS-in-JS approaches are acceptable.
 - **Linting and Formatting**

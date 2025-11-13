@@ -10,7 +10,7 @@
 - Zod with schema-driven form validation and `z.infer`
 
 ## UI and Styling
-- shadcn/ui component library (advised)
+- shadcn/ui component generator (installable CLI that scaffolds local components; not an npm dependency)
 - Tailwind CSS (advised styling approach)
 
 ## Optional Enhancements
