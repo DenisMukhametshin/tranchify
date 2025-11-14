@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-export function NotFoundRoute(): JSX.Element {
+export function NotFoundPage(): JSX.Element {
   return (
     <section className="mx-auto flex min-h-[60vh] max-w-2xl flex-col items-center justify-center gap-4 px-4 text-center">
       <h1 className="text-3xl font-bold">Page not found</h1>

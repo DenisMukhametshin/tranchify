@@ -2,8 +2,8 @@ import { createBrowserRouter } from 'react-router-dom'
 
 import { RootLayout } from '@/layouts/root-layout'
 
-import { LandingRoute } from './landing'
-import { NotFoundRoute } from './not-found'
+import { NotFoundPage } from './not-found-page'
+import { ProductsPage } from './products-page'
 
 export const router = createBrowserRouter([
   {
@@ -12,11 +12,11 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <LandingRoute />,
+        element: <ProductsPage />,
       },
       {
         path: '*',
-        element: <NotFoundRoute />,
+        element: <NotFoundPage />,
       },
     ],
   },

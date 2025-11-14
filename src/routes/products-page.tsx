@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-export function LandingRoute(): JSX.Element {
+export function ProductsPage(): JSX.Element {
   return (
     <section className="mx-auto flex min-h-[60vh] max-w-3xl flex-col justify-center gap-6 px-4 text-center">
       <header className="space-y-2">
