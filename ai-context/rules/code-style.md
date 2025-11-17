@@ -28,6 +28,18 @@
   - Allow editing selected fields (e.g., title, price, rating, discountPercentage) with changes remaining in memory.
   - Bonus: provide rich-text editing for the description using TipTap with default formatting only (bold, italic, list).
 
+## Component Decomposition Rules
+- Place each component in its own file; avoid multiple component exports per file.
+- Keep pages (route-level components) thin: they should only assemble layout and invoke high-level hooks.
+- Move business logic, complex state, and data fetching into dedicated `useXxx` hooks or services.
+- Break UI into small, reusable building blocks with a single responsibility each.
+- When a component starts handling multiple concerns, split it into focused subcomponents.
+- Never keep fetch logic or heavy state directly inside page components—delegate to hooks/services instead.
+
+## Naming and Structure
+- Name route-level components as `SomethingPage` (e.g., `ProductsPage`, `NotFoundPage`) to reinforce their responsibility as pages.
+- Refer to top-level route files as “pages” in code comments, documentation, and exports.
+
 ## Technical Recommendations
 - **TypeScript**
   - Enable strict mode and avoid `any`.
