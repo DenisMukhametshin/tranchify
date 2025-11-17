@@ -25,3 +25,4 @@
 - Semantic commit messages following Conventional Commits
 - Optional JSDoc for reusable helpers or custom hooks
 - Accessibility considerations: labels, keyboard navigation, ARIA roles where appropriate
+- Route-level components must follow the `SomethingPage` naming pattern (e.g., `ProductsPage`, `NotFoundPage`) and remain thin while domain logic lives inside hooks/services.
