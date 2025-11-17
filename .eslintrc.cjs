@@ -1,5 +1,6 @@
 module.exports = {
   root: true,
+  ignorePatterns: ['tailwind.config.ts', 'vite.config.ts'],
   env: {
     browser: true,
     es2021: true,
@@ -49,7 +50,7 @@ module.exports = {
       'warn',
       {
         groups: ['builtin', 'external', 'internal', ['parent', 'sibling', 'index'], 'object', 'type'],
-        newlines-between: 'always',
+        'newlines-between': 'always',
         alphabetize: {
           order: 'asc',
           caseInsensitive: true,
