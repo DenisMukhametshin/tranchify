@@ -14,18 +14,18 @@ export function ProductsPage(): JSX.Element {
   const showError = status === 'error'
 
   return (
-    <section className="mx-auto w-full max-w-6xl px-4 py-8 sm:py-12">
-      <header className="mb-8 space-y-4 text-center sm:mb-10">
-        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-primary/70">Live catalog</p>
-        <div className="space-y-2">
-          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Products</h1>
-          <p className="text-base text-muted-foreground">
+    <section className="mx-auto w-full max-w-6xl px-4 py-6 sm:py-8 md:py-12">
+      <header className="mb-6 space-y-3 text-center sm:mb-8 sm:space-y-4 md:mb-10">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-primary/70 sm:text-xs">Live catalog</p>
+        <div className="space-y-1.5 sm:space-y-2">
+          <h1 className="text-2xl font-bold tracking-tight sm:text-3xl sm:text-4xl">Products</h1>
+          <p className="text-sm text-muted-foreground sm:text-base">
             Fetched in real time from DummyJSON, filterable with schema-driven controls that persist in the URL.
           </p>
         </div>
       </header>
 
-      <div className="flex flex-col gap-10 md:flex-row items-start">
+      <div className="flex flex-col gap-6 md:flex-row md:gap-10 md:items-start">
         <ProductFilterSidebar
           categories={filtersApi.categories}
           form={filtersApi.form}

@@ -61,7 +61,7 @@ export function ProductFilterSidebar({
       <div
         aria-modal={isDrawerOpen ? true : undefined}
         className={[
-          'fixed inset-y-0 left-0 z-50 h-full w-80 overflow-y-auto bg-background p-6 shadow-2xl transition-transform duration-300 md:static md:z-auto md:h-auto md:w-72 md:translate-x-0 md:rounded-3xl md:border md:border-border/60 md:bg-card/40 md:p-6 md:shadow-none',
+          'fixed inset-y-0 left-0 z-50 h-full w-[85vw] max-w-sm overflow-y-auto bg-background p-4 shadow-2xl transition-transform duration-300 sm:p-6 md:static md:z-auto md:h-auto md:w-72 md:translate-x-0 md:rounded-3xl md:border md:border-border/60 md:bg-card/40 md:p-6 md:shadow-none',
           'hidden md:block',
           isDrawerOpen ? 'translate-x-0 block' : '-translate-x-full',
         ].join(' ')}

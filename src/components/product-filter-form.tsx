@@ -45,11 +45,11 @@ export function ProductFilterForm({
   }
 
   return (
-    <form className="flex h-full flex-col gap-6" onSubmit={(event) => event.preventDefault()}>
-      <div className="flex items-start justify-between gap-4">
+    <form className="flex h-full flex-col gap-4 sm:gap-6" onSubmit={(event) => event.preventDefault()}>
+      <div className="flex items-start justify-between gap-3 sm:gap-4">
         <div>
-          <p className="text-lg font-semibold">Filters</p>
-          <p className="text-xs text-muted-foreground">Refine the live catalog in real time.</p>
+          <p className="text-base font-semibold sm:text-lg">Filters</p>
+          <p className="text-[10px] text-muted-foreground sm:text-xs">Refine the live catalog in real time.</p>
         </div>
         <button
           className="text-xs font-semibold uppercase tracking-widest text-primary disabled:opacity-40"

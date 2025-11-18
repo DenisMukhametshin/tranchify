@@ -19,7 +19,7 @@ export function ProductDetailsPage(): JSX.Element {
 
   if (!id) {
     return (
-      <section className="mx-auto w-full max-w-6xl px-4 py-8 sm:py-12">
+      <section className="mx-auto w-full max-w-6xl px-4 py-6 sm:py-8 md:py-12">
         <StatePlaceholder
           description="The product ID is missing from the URL."
           title="Invalid product URL"
@@ -31,8 +31,8 @@ export function ProductDetailsPage(): JSX.Element {
 
   if (status === 'loading') {
     return (
-      <section className="mx-auto w-full max-w-6xl px-4 py-8 sm:py-12">
-        <div className="grid gap-8 lg:grid-cols-2">
+      <section className="mx-auto w-full max-w-6xl px-4 py-6 sm:py-8 md:py-12">
+        <div className="grid gap-6 sm:gap-8 lg:grid-cols-2">
           <div className="aspect-video w-full animate-pulse rounded-2xl bg-muted" />
           <div className="space-y-4">
             <div className="h-8 w-3/4 animate-pulse rounded bg-muted" />
@@ -48,7 +48,7 @@ export function ProductDetailsPage(): JSX.Element {
     const isNotFound = error?.toLowerCase().includes('not found')
 
     return (
-      <section className="mx-auto w-full max-w-6xl px-4 py-8 sm:py-12">
+      <section className="mx-auto w-full max-w-6xl px-4 py-6 sm:py-8 md:py-12">
         <StatePlaceholder
           description={
             isNotFound
@@ -74,8 +74,8 @@ export function ProductDetailsPage(): JSX.Element {
   const images = product.images && product.images.length > 0 ? product.images : []
 
   return (
-    <section className="mx-auto w-full max-w-6xl px-4 py-8 sm:py-12">
-      <div className="grid gap-8 lg:grid-cols-2">
+    <section className="mx-auto w-full max-w-6xl px-4 py-6 sm:py-8 md:py-12">
+      <div className="grid gap-6 sm:gap-8 lg:grid-cols-2">
         <div>
           {images.length > 0 ? (
             <ProductImageCarousel images={images} title={product.title} />

@@ -47,7 +47,7 @@ export function ProductEditPage(): JSX.Element {
 
   if (!id) {
     return (
-      <section className="mx-auto w-full max-w-6xl px-4 py-8 sm:py-12">
+      <section className="mx-auto w-full max-w-6xl px-4 py-6 sm:py-8 md:py-12">
         <StatePlaceholder
           description="The product ID is missing from the URL."
           title="Invalid product URL"
@@ -59,7 +59,7 @@ export function ProductEditPage(): JSX.Element {
 
   if (!isAuthenticated) {
     return (
-      <section className="mx-auto w-full max-w-6xl px-4 py-8 sm:py-12">
+      <section className="mx-auto w-full max-w-6xl px-4 py-6 sm:py-8 md:py-12">
         <StatePlaceholder
           description="Please log in to edit products."
           title="Authentication required"
@@ -71,7 +71,7 @@ export function ProductEditPage(): JSX.Element {
 
   if (status === 'loading') {
     return (
-      <section className="mx-auto w-full max-w-6xl px-4 py-8 sm:py-12">
+      <section className="mx-auto w-full max-w-6xl px-4 py-6 sm:py-8 md:py-12">
         <div className="space-y-6">
           <div className="h-8 w-1/2 animate-pulse rounded bg-muted" />
           <div className="space-y-4">
@@ -88,7 +88,7 @@ export function ProductEditPage(): JSX.Element {
     const isNotFound = error?.toLowerCase().includes('not found')
 
     return (
-      <section className="mx-auto w-full max-w-6xl px-4 py-8 sm:py-12">
+      <section className="mx-auto w-full max-w-6xl px-4 py-6 sm:py-8 md:py-12">
         <StatePlaceholder
           description={
             isNotFound
@@ -131,11 +131,11 @@ export function ProductEditPage(): JSX.Element {
   }
 
   return (
-    <section className="mx-auto w-full max-w-6xl px-4 py-8 sm:py-12">
+    <section className="mx-auto w-full max-w-6xl px-4 py-6 sm:py-8 md:py-12">
       <div className="space-y-6">
-        <div className="space-y-2">
-          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Edit Product</h1>
-          <p className="text-sm text-muted-foreground">Make changes to the product information below.</p>
+        <div className="space-y-1.5 sm:space-y-2">
+          <h1 className="text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl">Edit Product</h1>
+          <p className="text-xs text-muted-foreground sm:text-sm">Make changes to the product information below.</p>
         </div>
 
         <ProductEditForm form={form} onCancel={handleCancel} onSubmit={handleSubmit} product={productToEdit} />

@@ -33,19 +33,19 @@ export function ProductCard({ product }: ProductCardProps): JSX.Element {
         )}
       </Link>
 
-      <div className="flex flex-1 flex-col gap-3 p-5">
+      <div className="flex flex-1 flex-col gap-2.5 p-4 sm:gap-3 sm:p-5">
         <header className="space-y-1">
-          <p className="text-xs font-semibold uppercase tracking-widest text-primary/70">{product.category}</p>
+          <p className="text-[10px] font-semibold uppercase tracking-widest text-primary/70 sm:text-xs">{product.category}</p>
           <Link
-            className="text-lg font-semibold leading-tight transition hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            className="text-base font-semibold leading-tight transition hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 sm:text-lg"
             to={`/product/${product.id}`}
           >
             {product.title}
           </Link>
         </header>
 
-        <div className="mt-auto flex flex-wrap items-center justify-between gap-2 text-sm">
-          <span className="text-base font-semibold">{formatPrice(product.price)}</span>
+        <div className="mt-auto flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm">
+          <span className="text-sm font-semibold sm:text-base">{formatPrice(product.price)}</span>
 
           {hasRating ? (
             <span
