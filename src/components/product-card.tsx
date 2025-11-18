@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 import { formatPrice } from '@/helpers'
 import type { Product } from '@/types'
 
@@ -10,7 +12,11 @@ export function ProductCard({ product }: ProductCardProps): JSX.Element {
 
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-border/60 bg-card text-card-foreground shadow-md transition hover:-translate-y-0.5 hover:shadow-lg">
-      <div className="relative aspect-video w-full bg-muted">
+      <Link
+        aria-label={`View details for ${product.title}`}
+        className="relative block aspect-video w-full bg-muted"
+        to={`/product/${product.id}`}
+      >
         {product.thumbnail ? (
           <img
             alt={product.title}
@@ -25,12 +31,17 @@ export function ProductCard({ product }: ProductCardProps): JSX.Element {
             No image
           </div>
         )}
-      </div>
+      </Link>
 
       <div className="flex flex-1 flex-col gap-3 p-5">
         <header className="space-y-1">
           <p className="text-xs font-semibold uppercase tracking-widest text-primary/70">{product.category}</p>
-          <h3 className="text-lg font-semibold leading-tight">{product.title}</h3>
+          <Link
+            className="text-lg font-semibold leading-tight transition hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            to={`/product/${product.id}`}
+          >
+            {product.title}
+          </Link>
         </header>
 
         <div className="mt-auto flex flex-wrap items-center justify-between gap-2 text-sm">

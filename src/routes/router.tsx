@@ -3,6 +3,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import { RootLayout } from '@/layouts/root-layout'
 
 import { NotFoundPage } from './not-found-page'
+import { ProductDetailsPage } from './product-details-page'
 import { ProductsPage } from './products-page'
 
 export const router = createBrowserRouter([
@@ -13,6 +14,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <ProductsPage />,
+      },
+      {
+        path: 'product/:id',
+        element: <ProductDetailsPage />,
       },
       {
         path: '*',
