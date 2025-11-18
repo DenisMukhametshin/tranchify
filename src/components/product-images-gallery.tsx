@@ -20,7 +20,7 @@ export function ProductImagesGallery({ product }: ProductImagesGalleryProps): JS
       <figure className="overflow-hidden rounded-2xl border border-border/70 bg-muted">
         <img
           alt={product.title}
-          className="h-full w-full max-h-[420px] object-cover"
+          className="h-full w-full max-h-[420px] object-contain"
           loading="lazy"
           src={images[0]}
         />
@@ -41,7 +41,7 @@ export function ProductImagesGallery({ product }: ProductImagesGalleryProps): JS
             >
               <img
                 alt={product.title}
-                className="h-full w-full object-cover transition group-hover:scale-105"
+                className="h-full w-full object-contain transition group-hover:scale-105"
                 loading="lazy"
                 src={src}
               />

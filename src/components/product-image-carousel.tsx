@@ -67,7 +67,7 @@ export function ProductImageCarousel({ images, title }: ProductImageCarouselProp
             <div key={index} className="relative min-w-full">
               <img
                 alt=""
-                className="h-full w-full object-cover"
+                className="h-full w-full object-contain"
                 loading={index === 0 ? 'eager' : 'lazy'}
                 src={image}
               />

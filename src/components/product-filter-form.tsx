@@ -45,7 +45,7 @@ export function ProductFilterForm({
   }
 
   return (
-    <form className="flex h-full flex-col gap-4 sm:gap-6" onSubmit={(event) => event.preventDefault()}>
+    <form className="flex flex-col gap-4 sm:gap-6" onSubmit={(event) => event.preventDefault()}>
       <div className="flex items-start justify-between gap-3 sm:gap-4">
         <div>
           <p className="text-base font-semibold sm:text-lg">Filters</p>

@@ -43,8 +43,8 @@ export function RootLayout(): JSX.Element {
         </main>
         <footer className="border-t border-border bg-card">
           <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 px-4 py-3 text-[10px] text-muted-foreground sm:flex-row sm:justify-between sm:gap-0 sm:px-6 sm:py-4 sm:text-xs">
-            <span>Scaffold ready for feature implementation.</span>
-            <span>AI-assisted setup via Cursor + GPT-5 Codex.</span>
+            <span>© {new Date().getFullYear()} Tranchify. All rights reserved.</span>
+            <span>Data powered by DummyJSON</span>
           </div>
         </footer>
       </div>
