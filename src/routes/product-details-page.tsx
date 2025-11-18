@@ -1,11 +1,21 @@
 import { useParams } from 'react-router-dom'
 
 import { ProductImageCarousel, ProductDetailsMetadata, StatePlaceholder } from '@/components'
-import { useProductDetails } from '@/hooks'
+import { useAuth, useEditedProducts, useProductDetails } from '@/hooks'
+import type { Product } from '@/types'
 
 export function ProductDetailsPage(): JSX.Element {
   const { id } = useParams<{ id: string }>()
-  const { product, status, error, refetch } = useProductDetails(id || '')
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+  const { isAuthenticated } = useAuth()
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+  const { getEditedProduct } = useEditedProducts()
+  const { product: fetchedProduct, status, error, refetch } = useProductDetails(id || '')
+  
+  // Use edited product if available, otherwise use fetched product
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+  const editedProduct: Product | null = fetchedProduct ? getEditedProduct(fetchedProduct.id) : null
+  const product: Product | null = editedProduct ?? fetchedProduct
 
   if (!id) {
     return (
@@ -77,7 +87,8 @@ export function ProductDetailsPage(): JSX.Element {
         </div>
 
         <div>
-          <ProductDetailsMetadata product={product} />
+          {/* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */}
+          <ProductDetailsMetadata isAuthenticated={isAuthenticated} product={product} />
         </div>
       </div>
     </section>

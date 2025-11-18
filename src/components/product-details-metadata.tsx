@@ -5,9 +5,10 @@ import type { Product } from '@/types'
 
 type ProductDetailsMetadataProps = {
   product: Product
+  isAuthenticated?: boolean
 }
 
-export function ProductDetailsMetadata({ product }: ProductDetailsMetadataProps): JSX.Element {
+export function ProductDetailsMetadata({ product, isAuthenticated = false }: ProductDetailsMetadataProps): JSX.Element {
   const hasRating = typeof product.rating === 'number'
   const hasDiscount = typeof product.discountPercentage === 'number' && product.discountPercentage > 0
   const hasStock = typeof product.stock === 'number'
@@ -79,7 +80,10 @@ export function ProductDetailsMetadata({ product }: ProductDetailsMetadataProps)
       {product.description ? (
         <div className="space-y-2">
           <h2 className="text-lg font-semibold">Description</h2>
-          <p className="text-base leading-relaxed text-muted-foreground">{product.description}</p>
+          <div
+            className="prose prose-sm max-w-none text-base leading-relaxed text-muted-foreground [&_p]:mb-2 [&_ul]:list-disc [&_ul]:pl-6 [&_ol]:list-decimal [&_ol]:pl-6"
+            dangerouslySetInnerHTML={{ __html: product.description }}
+          />
         </div>
       ) : null}
 
@@ -99,7 +103,7 @@ export function ProductDetailsMetadata({ product }: ProductDetailsMetadataProps)
         </div>
       ) : null}
 
-      <div className="pt-4">
+      <div className="flex items-center gap-4 pt-4">
         <Link
           className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
           to="/"
@@ -116,6 +120,28 @@ export function ProductDetailsMetadata({ product }: ProductDetailsMetadataProps)
           </svg>
           Back to products
         </Link>
+        {isAuthenticated ? (
+          <Link
+            className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition hover:bg-muted focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            to={`/product/${product.id}/edit`}
+          >
+            <svg
+              aria-hidden="true"
+              className="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            Edit product
+          </Link>
+        ) : null}
       </div>
     </div>
   )

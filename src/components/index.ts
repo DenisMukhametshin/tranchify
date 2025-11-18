@@ -1,5 +1,6 @@
 export * from './product-card'
 export * from './product-details-metadata'
+export * from './product-edit-form'
 export * from './product-filter-form'
 export * from './product-filter-sidebar'
 export * from './product-grid'
