@@ -7,4 +7,4 @@ dist/
 .idea/
 coverage/
 *.log
-
+.vite/

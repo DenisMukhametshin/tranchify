@@ -1,4 +1,6 @@
 export * from './product-card'
+export * from './product-filter-form'
+export * from './product-filter-sidebar'
 export * from './product-grid'
 export * from './product-grid-skeleton'
 export * from './state-placeholder'
