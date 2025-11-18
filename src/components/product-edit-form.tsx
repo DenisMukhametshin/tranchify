@@ -1,4 +1,3 @@
-import { zodResolver } from '@hookform/resolvers/zod'
 import { Bold } from '@tiptap/extension-bold'
 import { BulletList } from '@tiptap/extension-bullet-list'
 import { Document } from '@tiptap/extension-document'
@@ -9,7 +8,7 @@ import { Paragraph } from '@tiptap/extension-paragraph'
 import { Text } from '@tiptap/extension-text'
 import { EditorContent, useEditor } from '@tiptap/react'
 import { useEffect } from 'react'
-import { useForm, type UseFormReturn } from 'react-hook-form'
+import {  type UseFormReturn } from 'react-hook-form'
 import { z } from 'zod'
 
 import type { Product } from '@/types'
@@ -73,7 +72,12 @@ export function ProductEditForm({ product, form, onSubmit, onCancel }: ProductEd
   }, [editor, product.description])
 
   return (
-    <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className="space-y-6"
+      onSubmit={(e) => {
+        void handleSubmit(onSubmit)(e)
+      }}
+    >
       <div className="space-y-2">
         <label className="text-sm font-medium text-foreground" htmlFor="edit-title">
           Title <span className="text-destructive">*</span>

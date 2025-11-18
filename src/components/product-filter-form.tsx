@@ -91,7 +91,7 @@ export function ProductFilterForm({
             {categories.map((category) => (
               <label className="flex items-center gap-2 text-sm text-foreground" key={category}>
                 <input
-                  className="h-4 w-4 rounded border-border"
+                  className="h-4 w-4 rounded border-border focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0"
                   type="checkbox"
                   value={category}
                   {...register('categories')}
@@ -172,7 +172,11 @@ export function ProductFilterForm({
       {hasDiscountData ? (
         <div className="space-y-3">
           <label className="flex cursor-pointer items-center gap-3 text-sm font-medium text-foreground">
-            <input className="h-4 w-4 rounded border-border" type="checkbox" {...register('discountedOnly')} />
+            <input
+              className="h-4 w-4 rounded border-border focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0"
+              type="checkbox"
+              {...register('discountedOnly')}
+            />
             Discounted only
           </label>
           {discountedOnly ? (

@@ -55,4 +55,11 @@
   body {
     @apply bg-background text-foreground antialiased;
   }
+
+  input[type='checkbox']:focus,
+  input[type='checkbox']:focus-visible {
+    outline: none;
+    outline-offset: 0;
+    box-shadow: none;
+  }
 }

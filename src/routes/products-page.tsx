@@ -25,7 +25,7 @@ export function ProductsPage(): JSX.Element {
         </div>
       </header>
 
-      <div className="flex flex-col gap-10 md:flex-row">
+      <div className="flex flex-col gap-10 md:flex-row items-start">
         <ProductFilterSidebar
           categories={filtersApi.categories}
           form={filtersApi.form}
