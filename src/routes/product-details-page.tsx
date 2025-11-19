@@ -78,7 +78,7 @@ export function ProductDetailsPage(): JSX.Element {
       <div className="grid gap-6 sm:gap-8 lg:grid-cols-2">
         <div>
           {images.length > 0 ? (
-            <ProductImageCarousel images={images} title={product.title} />
+            <ProductImageCarousel images={images} />
           ) : (
             <div className="flex aspect-video w-full items-center justify-center rounded-2xl border border-border/60 bg-muted">
               <p className="text-sm text-muted-foreground">No images available</p>

@@ -2,10 +2,9 @@ import { useCallback, useEffect, useState } from 'react'
 
 type ProductImageCarouselProps = {
   images: string[]
-  title: string
 }
 
-export function ProductImageCarousel({ images, title }: ProductImageCarouselProps): JSX.Element {
+export function ProductImageCarousel({ images }: ProductImageCarouselProps): JSX.Element {
   const [currentIndex, setCurrentIndex] = useState(0)
   const hasMultipleImages = images.length > 1
 

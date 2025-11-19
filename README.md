@@ -5,21 +5,21 @@ This repository hosts the foundation for the Tranchify frontend, pre-configured 
 ## Getting Started
 
 ```bash
-pnpm install
-pnpm dev
+npm install
+npm run dev
 ```
 
-> The project targets Node.js `>=18.18.0` and pnpm `>=8.7.0`.
+> The project targets Node.js `>=18.18.0`.
 
 ### Available Scripts
 
-- `pnpm dev` – start the Vite development server.
-- `pnpm build` – type-check and create a production build.
-- `pnpm preview` – preview the production build locally.
-- `pnpm lint` / `pnpm lint:fix` – run ESLint (pinned to `^8.56.0` for compatibility with the current TypeScript + plugin stack; upgrade carefully once ESLint 9 guidance is published).
-- `pnpm type-check` – run TypeScript in no-emit mode.
-- `pnpm format` / `pnpm format:check` – apply or verify Prettier formatting.
-- `pnpm shadcn` – helper to invoke the shadcn/ui CLI (`npx shadcn-ui@latest init`).
+- `npm run dev` – start the Vite development server.
+- `npm run build` – type-check and create a production build.
+- `npm run preview` – preview the production build locally.
+- `npm run lint` / `npm run lint:fix` – run ESLint (pinned to `^8.56.0` for compatibility with the current TypeScript + plugin stack; upgrade carefully once ESLint 9 guidance is published).
+- `npm run type-check` – run TypeScript in no-emit mode.
+- `npm run format` / `npm run format:check` – apply or verify Prettier formatting.
+- `npm run shadcn` – helper to invoke the shadcn/ui CLI (`npx shadcn-ui@latest init`).
 
 ## Tooling Overview
 
@@ -47,7 +47,7 @@ src/
 ## Tailwind & shadcn/ui
 
 - Tailwind is configured in `tailwind.config.ts` and paired with `postcss.config.cjs`.
-- Run `pnpm shadcn` to initialize the shadcn/ui generator when you're ready to scaffold components. No components have been generated yet.
+- Run `npm run shadcn` to initialize the shadcn/ui generator when you're ready to scaffold components. No components have been generated yet.
 
 ## Next Steps
 
@@ -58,7 +58,7 @@ src/
 ## Contributing
 
 - Follow [Conventional Commits](https://www.conventionalcommits.org/) for commit messages.
-- Run `pnpm lint` and `pnpm type-check` before submitting pull requests.
+- Run `npm run lint` and `npm run type-check` before submitting pull requests.
 
 ## Acknowledgements
 

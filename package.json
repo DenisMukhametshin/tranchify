@@ -15,8 +15,7 @@
     "shadcn": "npx shadcn-ui@latest init"
   },
   "engines": {
-    "node": ">=18.18.0",
-    "pnpm": ">=8.7.0"
+    "node": ">=18.18.0"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

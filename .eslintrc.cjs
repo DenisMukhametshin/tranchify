@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  ignorePatterns: ['tailwind.config.ts', 'vite.config.ts'],
+  ignorePatterns: ['.eslintrc.cjs', 'tailwind.config.ts', 'vite.config.ts'],
   env: {
     browser: true,
     es2021: true,
