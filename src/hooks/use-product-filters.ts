@@ -1,98 +1,18 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useEffect, useMemo, useRef } from 'react'
-import { useForm, type UseFormReturn } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { useSearchParams } from 'react-router-dom'
-import { z } from 'zod'
 
 import {
+  createDefaultFilters,
+  filterProducts,
   FILTER_QUERY_KEYS,
   mergeFiltersIntoParams,
-  parseBooleanParam,
-  parseCategoryParam,
-  parseNumberParam,
+  parseFiltersFromParams,
   serializeFilters,
 } from '@/helpers/product-filters'
-import type { Product } from '@/types'
-
-const filtersSchema = z
-  .object({
-    search: z
-      .string()
-      .trim()
-      .max(100, { message: 'Keep search terms under 100 characters.' })
-      .optional(),
-    categories: z.array(z.string()).default([]),
-    minPrice: z.number().nonnegative().optional(),
-    maxPrice: z.number().nonnegative().optional(),
-    rating: z.number().min(0).max(5).optional(),
-    discountedOnly: z.boolean().optional(),
-    minDiscountPercent: z.number().min(0).max(100).optional(),
-  })
-  .refine(
-    (data) => {
-      if (data.maxPrice !== undefined && data.minPrice === undefined) {
-        return false
-      }
-
-      return true
-    },
-    {
-      message: 'Add a minimum price before setting a maximum.',
-      path: ['maxPrice'],
-    },
-  )
-  .refine(
-    (data) => {
-      if (data.minPrice !== undefined && data.maxPrice !== undefined) {
-        return data.maxPrice >= data.minPrice
-      }
-
-      return true
-    },
-    {
-      message: 'Max price must be greater than or equal to min price.',
-      path: ['maxPrice'],
-    },
-  )
-  .transform((data) => ({
-    search: data.search ?? '',
-    categories: data.categories,
-    minPrice: data.minPrice,
-    maxPrice: data.maxPrice,
-    rating: data.rating,
-    discountedOnly: Boolean(data.discountedOnly),
-    minDiscountPercent: data.discountedOnly ? data.minDiscountPercent : undefined,
-  }))
-
-export type ProductFilterFormValues = z.infer<typeof filtersSchema>
-
-const DEFAULT_FILTERS: ProductFilterFormValues = {
-  search: '',
-  categories: [],
-  minPrice: undefined,
-  maxPrice: undefined,
-  rating: undefined,
-  discountedOnly: false,
-  minDiscountPercent: undefined,
-}
-
-function createDefaultFilters(): ProductFilterFormValues {
-  return {
-    ...DEFAULT_FILTERS,
-    categories: [],
-  }
-}
-
-type UseProductFiltersResult = {
-  form: UseFormReturn<ProductFilterFormValues>
-  filteredProducts: Product[]
-  categories: string[]
-  ratingOptions: number[]
-  hasDiscountData: boolean
-  hasRatingData: boolean
-  hasActiveFilters: boolean
-  resetFilters: () => void
-}
+import { filtersSchema } from '@/schemas/filters-schema'
+import type { Product, ProductFilterFormValues, UseProductFiltersResult } from '@/types'
 
 export function useProductFilters(products: Product[]): UseProductFiltersResult {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -183,50 +103,7 @@ export function useProductFilters(products: Product[]): UseProductFiltersResult 
     }
   }, [discountedOnlyValue, form])
 
-  const filteredProducts = useMemo(() => {
-    return products.filter((product) => {
-      if (filters.search && !product.title.toLowerCase().includes(filters.search.toLowerCase())) {
-        return false
-      }
-
-      if (filters.categories.length > 0 && !filters.categories.includes(product.category)) {
-        return false
-      }
-
-      if (filters.minPrice !== undefined && product.price < filters.minPrice) {
-        return false
-      }
-
-      if (filters.maxPrice !== undefined && product.price > filters.maxPrice) {
-        return false
-      }
-
-      if (filters.rating !== undefined) {
-        if (typeof product.rating !== 'number') {
-          return false
-        }
-
-        if (product.rating < filters.rating) {
-          return false
-        }
-      }
-
-      if (filters.discountedOnly) {
-        if (typeof product.discountPercentage !== 'number') {
-          return false
-        }
-
-        if (
-          typeof filters.minDiscountPercent === 'number' &&
-          product.discountPercentage < filters.minDiscountPercent
-        ) {
-          return false
-        }
-      }
-
-      return true
-    })
-  }, [filters, products])
+  const filteredProducts = useMemo(() => filterProducts(products, filters), [filters, products])
 
   const hasActiveFilters = serializeFilters(filters) !== serializeFilters(createDefaultFilters())
 
@@ -255,28 +132,3 @@ export function useProductFilters(products: Product[]): UseProductFiltersResult 
     resetFilters,
   }
 }
-
-function parseFiltersFromParams(params: URLSearchParams): ProductFilterFormValues {
-  const raw = {
-    search: params.get('search') ?? undefined,
-    categories: parseCategoryParam(params.get('categories')),
-    minPrice: parseNumberParam(params.get('minPrice')),
-    maxPrice: parseNumberParam(params.get('maxPrice')),
-    rating: parseNumberParam(params.get('rating')),
-    discountedOnly: parseBooleanParam(params.get('discountedOnly')),
-    minDiscountPercent: parseNumberParam(params.get('minDiscountPercent')),
-  }
-
-  const parsed = filtersSchema.safeParse(raw)
-
-  if (parsed.success) {
-    return {
-      ...parsed.data,
-      categories: Array.from(new Set(parsed.data.categories)),
-    }
-  }
-
-  return createDefaultFilters()
-}
-
-

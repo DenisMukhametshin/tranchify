@@ -1,5 +1,5 @@
 import { formatCategoryLabel } from '@/helpers'
-import type { ProductFilterFormValues } from '@/hooks/use-product-filters'
+import type { ProductFilterFormValues } from '@/types'
 
 import type { UseFormReturn } from 'react-hook-form'
 

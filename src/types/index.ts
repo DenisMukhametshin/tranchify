@@ -1,3 +1,5 @@
 export * from './product'
 export * from './product-edit-form'
+export * from './product-filter-form'
 export * from './fetch-status'
+export * from './use-product-filters'

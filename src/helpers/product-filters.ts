@@ -1,4 +1,6 @@
-import type { ProductFilterFormValues } from '@/hooks/use-product-filters'
+import { filtersSchema } from '@/schemas/filters-schema'
+import type { ProductFilterFormValues , Product } from '@/types'
+
 
 export const FILTER_QUERY_KEYS = [
   'search',
@@ -86,5 +88,90 @@ export function mergeFiltersIntoParams(
   }
 
   return next
+}
+
+export const DEFAULT_FILTERS: ProductFilterFormValues = {
+  search: '',
+  categories: [],
+  minPrice: undefined,
+  maxPrice: undefined,
+  rating: undefined,
+  discountedOnly: false,
+  minDiscountPercent: undefined,
+}
+
+export function createDefaultFilters(): ProductFilterFormValues {
+  return {
+    ...DEFAULT_FILTERS,
+    categories: [],
+  }
+}
+
+export function parseFiltersFromParams(params: URLSearchParams): ProductFilterFormValues {
+  const raw = {
+    search: params.get('search') ?? undefined,
+    categories: parseCategoryParam(params.get('categories')),
+    minPrice: parseNumberParam(params.get('minPrice')),
+    maxPrice: parseNumberParam(params.get('maxPrice')),
+    rating: parseNumberParam(params.get('rating')),
+    discountedOnly: parseBooleanParam(params.get('discountedOnly')),
+    minDiscountPercent: parseNumberParam(params.get('minDiscountPercent')),
+  }
+
+  const parsed = filtersSchema.safeParse(raw)
+
+  if (parsed.success) {
+    return {
+      ...parsed.data,
+      categories: Array.from(new Set(parsed.data.categories)),
+    }
+  }
+
+  return createDefaultFilters()
+}
+
+export function filterProducts(products: Product[], filters: ProductFilterFormValues): Product[] {
+  return products.filter((product) => {
+    if (filters.search && !product.title.toLowerCase().includes(filters.search.toLowerCase())) {
+      return false
+    }
+
+    if (filters.categories.length > 0 && !filters.categories.includes(product.category)) {
+      return false
+    }
+
+    if (filters.minPrice !== undefined && product.price < filters.minPrice) {
+      return false
+    }
+
+    if (filters.maxPrice !== undefined && product.price > filters.maxPrice) {
+      return false
+    }
+
+    if (filters.rating !== undefined) {
+      if (typeof product.rating !== 'number') {
+        return false
+      }
+
+      if (product.rating < filters.rating) {
+        return false
+      }
+    }
+
+    if (filters.discountedOnly) {
+      if (typeof product.discountPercentage !== 'number') {
+        return false
+      }
+
+      if (
+        typeof filters.minDiscountPercent === 'number' &&
+        product.discountPercentage < filters.minDiscountPercent
+      ) {
+        return false
+      }
+    }
+
+    return true
+  })
 }
 

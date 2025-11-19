@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import type { ProductFilterFormValues } from '@/hooks/use-product-filters'
+import type { ProductFilterFormValues } from '@/types'
 
 import { ProductFilterForm } from './product-filter-form'
 
