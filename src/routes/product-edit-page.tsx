@@ -4,21 +4,17 @@ import { useForm } from 'react-hook-form'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { ProductEditForm, StatePlaceholder } from '@/components'
-import { editFormSchema, type ProductEditFormValues } from '@/components/product-edit-form'
 import { useAuth, useEditedProducts, useProductDetails } from '@/hooks'
-import type { Product } from '@/types'
+import { editFormSchema } from '@/schemas/edit-form-schema'
+import type { Product , ProductEditFormValues } from '@/types'
 
 export function ProductEditPage(): JSX.Element {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
   const { isAuthenticated } = useAuth()
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
   const { product, status, error } = useProductDetails(id || '')
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
   const { getEditedProduct, setEditedProduct } = useEditedProducts()
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
   const editedProduct: Product | null = product ? getEditedProduct(product.id) : null
   const productToEdit: Product | null = editedProduct ?? product
 
@@ -109,19 +105,13 @@ export function ProductEditPage(): JSX.Element {
 
     const updatedProduct: Product = {
       ...product,
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
       title: values.title,
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
       price: values.price,
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
       rating: values.rating,
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
       discountPercentage: values.discountPercentage,
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
       description: values.description || product.description,
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     setEditedProduct(updatedProduct)
     navigate(`/product/${id}`)
   }

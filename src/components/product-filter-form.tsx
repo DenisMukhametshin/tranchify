@@ -1,3 +1,4 @@
+import { formatCategoryLabel } from '@/helpers'
 import type { ProductFilterFormValues } from '@/hooks/use-product-filters'
 
 import type { UseFormReturn } from 'react-hook-form'
@@ -211,12 +212,4 @@ export function ProductFilterForm({
     </form>
   )
 }
-
-function formatCategoryLabel(category: string): string {
-  return category
-    .split('-')
-    .map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1))
-    .join(' ')
-}
-
 

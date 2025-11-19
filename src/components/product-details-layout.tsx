@@ -1,12 +1,10 @@
-import type { Product } from '@/types'
+import type { Product , FetchStatus } from '@/types'
 
 import { ProductDetailsMetadata } from './product-details-metadata'
 import { ProductImagesGallery } from './product-images-gallery'
 import { StatePlaceholder } from './state-placeholder'
 
 import type { ReactNode } from 'react'
-
-type FetchStatus = 'idle' | 'loading' | 'success' | 'error'
 
 type ProductDetailsLayoutProps = {
   product: Product | null

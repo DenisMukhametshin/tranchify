@@ -9,27 +9,8 @@ import { Text } from '@tiptap/extension-text'
 import { EditorContent, useEditor } from '@tiptap/react'
 import { useEffect } from 'react'
 import {  type UseFormReturn } from 'react-hook-form'
-import { z } from 'zod'
 
-import type { Product } from '@/types'
-
-export const editFormSchema = z.object({
-  title: z.string().min(1, { message: 'Title is required.' }),
-  price: z.number().positive({ message: 'Price must be a positive number.' }),
-  rating: z
-    .number()
-    .min(0, { message: 'Rating must be at least 0.' })
-    .max(5, { message: 'Rating must be at most 5.' })
-    .optional(),
-  discountPercentage: z
-    .number()
-    .min(0, { message: 'Discount must be at least 0.' })
-    .max(100, { message: 'Discount must be at most 100.' })
-    .optional(),
-  description: z.string().optional(),
-})
-
-export type ProductEditFormValues = z.infer<typeof editFormSchema>
+import type { Product, ProductEditFormValues } from '@/types'
 
 type ProductEditFormProps = {
   product: Product
